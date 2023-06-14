@@ -1,0 +1,27 @@
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    
+    background-color:white;
+    
+}
+
+header{
+    background-color: brown;
+    padding:5%;
+    
+
+}
+
+main {
+    margin:2rem;
+}
+
+
+.list_style{
+    list-style:none;
+}
+
+input{
+    margin:2px;
+    
+}

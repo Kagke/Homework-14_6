@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - Events</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Europe's Event Guide</h1>
+    </header>
+    <main>
+    <h2>Upcoming Events:</h2>
+    {% for event in events %}
+       <ul>
+        <li>
+            <b> {{event.name_of_event}} </b>: 
+            {% if event.date.strftime %}
+                {{event.date.strftime("%b %d %Y")}},
+               {% elif event.date.strftime == None %}
+                {% endif %}
+            
+            
+            
+                    <span> {{event.number_guest}}{{event.room_location}} ,{{event.description}} </span>
+                {% if event.recurring %}
+                <span>is a Recurring Event</span>
+                {% else %}
+                <label for="meeting-time">Choose a Date for your event:</label>
+
+               <input type="datetime-local" id="meeting-time"
+               name="meeting-time" value="2018-06-12T19:30"
+               min="2022-06-07T00:00" max="2025-06-14T00:00">
+                
+               {% endif %} 
+               <form method = "post" action="/events/delete/{{loop.index0}}">
+               <input type="submit" value = "Delete">
+               </form>
+
+            
+        </li>    
+    </ul>
+    
+    {% endfor %}
+    <h2>Add Your Own Event Down Bellow :</h2>
+     <form action = "/events" method = "post">
+    <ul class="list_style">
+        <li>
+            <label for="name">Name of Event</label>
+            <input type="text" name="name" id="name">
+        </li>
+        <li>
+            <label for="date">Date</label>
+            <input type="date" name="date" id="date">
+        </li>
+        <li>
+            <label for="num_of_guest">Number Of Guests</label>
+            <input type="text" name="num_of_guest" id="num_of_guest">
+        </li>
+        <li>
+            <label for="room_location">Place</label>
+            <input type="text" name="room_location" id="room_location">
+        </li>
+        <li>
+            <label for="description">Description</label>
+            <input type="text" name="description" id="description">
+        </li>
+        <li>
+            <label for="recurring">Recurring</label>
+            <input type="text" name="recurring" id="recurring">
+        </li>
+       
+    </ul>
+        <div><input type="submit" value = "Add Event"></div>
+     </form>
+ </main>
+    
+    
+</body>
+</html>
